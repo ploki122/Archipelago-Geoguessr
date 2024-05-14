@@ -1,0 +1,104 @@
+﻿Id;Name;Slug;Published;AverageScore;Difficulty;DifficultyLevel;InExplorerMode
+1;World;world;TRUE;10393;MEDIUM;3;FALSE
+2;Canada;canada;TRUE;11974;MEDIUM;3;TRUE
+3;United States;usa;TRUE;11682;MEDIUM;3;TRUE
+4;Japan;japan;TRUE;18513;EASY;2;TRUE
+5;United Kingdom;uk;TRUE;12364;MEDIUM;3;TRUE
+6;France;france;TRUE;14613;MEDIUM;3;TRUE
+7;Spain;spain;TRUE;13476;MEDIUM;3;TRUE
+8;Russia;russia;TRUE;11567;MEDIUM;3;TRUE
+9;Italy;italy;TRUE;11688;MEDIUM;3;TRUE
+10;Australia;australia;TRUE;10334;MEDIUM;3;TRUE
+11;Germany;germany;TRUE;13151;MEDIUM;3;TRUE
+12;Brazil;brazil;TRUE;10287;MEDIUM;3;TRUE
+13;Türkiye;turkey;TRUE;13677;MEDIUM;3;TRUE
+14;Netherlands;netherlands;TRUE;13311;MEDIUM;3;TRUE
+15;India;india;TRUE;12389;MEDIUM;3;TRUE
+16;Poland;poland;TRUE;10582;MEDIUM;3;TRUE
+17;Sweden;sweden;TRUE;13581;MEDIUM;3;TRUE
+18;Norway;norway;TRUE;13824;MEDIUM;3;TRUE
+19;Argentina;argentina;TRUE;10650;MEDIUM;3;TRUE
+20;Ukraine;ukraine;TRUE;9524;HARD;4;TRUE
+21;Indonesia;indonesia;TRUE;11512;MEDIUM;3;TRUE
+22;Switzerland;switzerland;TRUE;13454;MEDIUM;3;TRUE
+23;New Zealand;new-zealand;TRUE;12143;MEDIUM;3;TRUE
+24;Finland;finland;TRUE;11962;MEDIUM;3;TRUE
+25;Portugal;portugal;TRUE;15398;MEDIUM;3;TRUE
+26;Denmark;denmark;TRUE;13256;MEDIUM;3;TRUE
+27;Ireland;ireland;TRUE;11189;MEDIUM;3;TRUE
+28;Romania;romania;TRUE;10034;MEDIUM;3;TRUE
+29;Serbia;serbia;TRUE;11988;MEDIUM;3;TRUE
+30;Belgium;belgium;TRUE;13438;MEDIUM;3;TRUE
+31;Mexico;mexico;TRUE;11032;MEDIUM;3;TRUE
+32;Greece;greece;TRUE;11496;MEDIUM;3;TRUE
+33;Chile;chile;TRUE;14552;MEDIUM;3;TRUE
+34;Bulgaria;bulgaria;TRUE;10859;MEDIUM;3;TRUE
+35;Israel;israel;TRUE;13594;MEDIUM;3;TRUE
+36;Croatia;croatia;TRUE;12209;MEDIUM;3;TRUE
+37;Czech Republic;czech-republic;TRUE;13316;MEDIUM;3;TRUE
+38;Hungary;hungary;TRUE;12636;MEDIUM;3;TRUE
+39;Austria;austria;TRUE;16592;MEDIUM;3;TRUE
+40;Colombia;colombia;TRUE;12172;MEDIUM;3;TRUE
+41;Taiwan;taiwan;TRUE;12873;MEDIUM;3;TRUE
+42;Slovakia;slovakia;TRUE;13767;MEDIUM;3;TRUE
+43;Thailand;thailand;TRUE;11869;MEDIUM;3;TRUE
+44;Singapore;singapore;TRUE;15107;MEDIUM;3;TRUE
+45;Philippines;philippines;TRUE;10793;MEDIUM;3;TRUE
+46;South Korea;south-korea;TRUE;12866;MEDIUM;3;TRUE
+47;Lithuania;lithuania;TRUE;9587;HARD;4;TRUE
+48;South Africa;south-africa;TRUE;10262;MEDIUM;3;TRUE
+49;Estonia;estonia;TRUE;10939;MEDIUM;3;TRUE
+50;Iceland;iceland;TRUE;13123;MEDIUM;3;TRUE
+51;Slovenia;slovenia;TRUE;12761;MEDIUM;3;TRUE
+52;Latvia;latvia;TRUE;11343;MEDIUM;3;TRUE
+53;Malaysia;malaysia;TRUE;13040;MEDIUM;3;TRUE
+54;Peru;peru;TRUE;10147;MEDIUM;3;TRUE
+55;Ecuador;ecuador;TRUE;13795;MEDIUM;3;TRUE
+56;Uruguay;uruguay;TRUE;9873;HARD;4;TRUE
+57;Greenland;greenland;TRUE;10913;MEDIUM;3;TRUE
+58;Madagascar;madagascar;TRUE;15348;MEDIUM;3;TRUE
+59;Albania;albania;TRUE;12119;MEDIUM;3;TRUE
+60;Mongolia;mongolia;TRUE;12040;MEDIUM;3;TRUE
+61;North Macedonia;north-macedonia;TRUE;11957;MEDIUM;3;TRUE
+62;Puerto Rico;puerto-rico;TRUE;15196;MEDIUM;3;TRUE
+63;Hong Kong;hongkong;TRUE;17289;EASY;2;TRUE
+64;Luxembourg;luxembourg;TRUE;13550;MEDIUM;3;TRUE
+65;Tunisia;tunisia;TRUE;14155;MEDIUM;3;TRUE
+66;Nigeria;nigeria;TRUE;11389;MEDIUM;3;TRUE
+67;Guatemala;guatemala;TRUE;12493;MEDIUM;3;TRUE
+68;Montenegro;montenegro;TRUE;12044;MEDIUM;3;TRUE
+69;Bangladesh;bangladesh;TRUE;9174;HARD;4;TRUE
+70;Monaco;monaco;TRUE;19043;EASY;2;TRUE
+71;Botswana;botswana;TRUE;8927;HARD;4;TRUE
+72;Bolivia;bolivia;TRUE;14106;MEDIUM;3;TRUE
+73;Dominican Republic;dominican-republic;TRUE;15208;MEDIUM;3;TRUE
+74;Malta;malta;TRUE;14082;MEDIUM;3;TRUE
+75;United Arab Emirates;uae;TRUE;15485;MEDIUM;3;TRUE
+76;Kyrgyzstan;kyrgyzstan;TRUE;14842;MEDIUM;3;TRUE
+77;Sri Lanka;sri-lanka;TRUE;9272;HARD;4;TRUE
+78;Faroe Islands;faroe-islands;TRUE;16899;MEDIUM;3;TRUE
+79;Kenya;kenya;TRUE;11459;MEDIUM;3;TRUE
+80;Isle of Man;isle-of-man;TRUE;14406;MEDIUM;3;TRUE
+81;Jordan;jordan;TRUE;15730;MEDIUM;3;TRUE
+82;Andorra;andorra;TRUE;13748;MEDIUM;3;TRUE
+83;Senegal;senegal;TRUE;9239;HARD;4;TRUE
+84;Christmas Island;christmas-island;TRUE;15538;MEDIUM;3;TRUE
+85;Cambodia;cambodia;TRUE;7629;HARD;4;TRUE
+86;Jersey;jersey;TRUE;15185;MEDIUM;3;TRUE
+87;San Marino;san-marino;TRUE;14353;MEDIUM;3;TRUE
+88;Laos;laos;TRUE;16403;MEDIUM;3;TRUE
+89;Ghana;ghana;TRUE;9697;HARD;4;TRUE
+90;Lesotho;lesotho;TRUE;10299;MEDIUM;3;TRUE
+91;Gibraltar;gibraltar;TRUE;16509;MEDIUM;3;TRUE
+92;Uganda;uganda;TRUE;19614;EASY;2;TRUE
+93;Guam;guam;TRUE;20033;VERY EASY;1;TRUE
+94;Qatar;qatar;TRUE;17044;EASY;2;TRUE
+95;Rwanda;rwanda;TRUE;21027;VERY EASY;1;TRUE
+96;Eswatini;eswatini;TRUE;11244;MEDIUM;3;TRUE
+97;Bhutan;bhutan;TRUE;11775;MEDIUM;3;TRUE
+98;Curaçao;curacao;TRUE;16647;MEDIUM;3;TRUE
+99;Northern Mariana Islands;northern-mariana-islands;TRUE;15529;MEDIUM;3;TRUE
+100;American Samoa;american-samoa;TRUE;14195;MEDIUM;3;TRUE
+101;United States Virgin Islands;us-virgin-islands;TRUE;10986;MEDIUM;3;TRUE
+102;Panama;panama;TRUE;10628;MEDIUM;3;TRUE
+103;Kazakhstan;kazakhstan;TRUE;7939;HARD;4;TRUE
