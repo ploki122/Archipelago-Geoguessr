@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional, Dict, List
 from BaseClasses import Location
-from .data.maps import COUNTRY_MAPS, GeoguessrMap
+from .data.maps import COUNTRY_MAPS
 
 LOCATION_CODE_OFFSET = 0x6E0DA7A
 

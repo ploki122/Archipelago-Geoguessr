@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from Options import Range, DefaultOnToggle, Choice, PerGameCommonOptions, DeathLink
+from .data.maps import WORLD_MAPS, COUNTRY_MAPS
 
 
 class GoalScore(Range):
@@ -14,7 +15,7 @@ class MapGoal(Range):
     """How many maps must be completed to finish a slot."""
     display_name = "Maps for goal"
     range_start = 1
-    range_end = 100
+    range_end = len(WORLD_MAPS) + len(COUNTRY_MAPS)
     default = 10
 
 
@@ -47,10 +48,10 @@ class MovementType(Choice):
     Full Movement : Start with Move, Pan and Zoom.
     Move Shuffled : Start with No Move, Move is shuffled.
     2-item Progressive : Start with NMPZ (No movement, pan or zoom), then unlock Pan+Zoom, and then Move.
-    3-item Progressive : Start with NMPZ, then unlock Zoom, Pan, and then Move.
+    3-item Progressive : Start with NMPZ, then unlock Pan, Zoom, and then Move.
     2-item Shuffled : Start with NMPZ, Zoom+Pan and Move are shuffled as distinct items.
     """
-    display_name = "Randomize Wild Pokemon"
+    display_name = "Movement randomization"
     default = 2
     option_full_movement = 0
     option_move_shuffled = 1

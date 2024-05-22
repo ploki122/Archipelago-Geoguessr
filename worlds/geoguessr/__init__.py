@@ -1,12 +1,13 @@
 import logging
+import random
 
 from typing import List, Dict
-from BaseClasses import Location, Item, ItemClassification
+from BaseClasses import Location, Item, ItemClassification, Region
 from worlds.AutoWorld import MultiWorld, WebWorld, Tutorial, World
-from .options import GeoguessrOptions
-from .items import item_table
+from .logic import obtain_random_maps, calculate_time_item_count
+from .options import GeoguessrOptions, MovementType
+from .items import item_table, item_group_table
 from .locations import location_table
-from .logic import obtain_random_maps
 from .data.maps import GeoguessrMap, COUNTRY_MAPS, WORLD_MAPS
 
 logger = logging.getLogger("Geoguessr")
@@ -45,50 +46,24 @@ class GeoguessrWorld(World):
     game = "Geoguessr"
     topology_present = False
 
+    items.initialize_item_tables()
     item_name_to_id = {name: data.code for name, data in item_table.items()}
+
+    locations.initialize_location_table()
     location_name_to_id = {name: data.code for name, data in location_table.items()}
-
-    # item_name_groups = {
-    # }
-    # location_name_groups = {
-    # }
-
-    selected_countries: List[GeoguessrMap]
-    required_client_version = (0, 4, 6)
 
     options_dataclass = GeoguessrOptions
     options: GeoguessrOptions
 
+    item_name_groups = item_group_table
     web = GeoguessrWebWorld()
-    total_progression_items: int
 
     def __init__(self, multiworld: MultiWorld, player: int):
         super().__init__(multiworld, player)
         self.selected_countries = []
 
-#The world has to provide the following things for generation:
-    #the properties mentioned above
-    #additions to the item pool
-    #additions to the regions list: at least one called "Menu"
-    #locations placed inside those regions
-    #create_item(self, item: str) -> MyGameItem to create any item on demand
-    #self.multiworld.push_precollected for world-defined start inventory
-
-#In addition, the following methods can be implemented and are called in this order during generation:
-
-#generate_early(self) called per player before any items or locations are created. You can set properties on your world here. Already has access to player options and RNG. This is the earliest step where the world should start setting up for the current multiworld, as the multiworld itself is still setting up before this point.
-#create_regions(self) called to place player's regions and their locations into the MultiWorld's regions list. If it's hard to separate, this can be done during generate_early or create_items as well.
-#create_items(self) called to place player's items into the MultiWorld's itempool. After this step all regions and items have to be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
-#set_rules(self) called to set access and item rules on locations and entrances.
-#generate_basic(self) player-specific randomization that does not affect logic can be done here.
-#pre_fill(self), fill_hook(self) and post_fill(self) called to modify item placement before, during, and after the regular fill process; all finishing before generate_output. Any items that need to be placed during pre_fill should not exist in the itempool, and if there are any items that need to be filled this way, but need to be in state while you fill other items, they can be returned from get_prefill_items.
-#generate_output(self, output_directory: str) creates the output files if there is output to be generated. When this is called, self.multiworld.get_locations(self.player) has all locations for the player, with attribute item pointing to the item. location.item.player can be used to see if it's a local item.
-#fill_slot_data(self) and modify_multidata(self, multidata: Dict[str, Any]) can be used to modify the data that will be used by the server to host the MultiWorld.
-#All instance methods can, optionally, have a class
-
     def generate_early(self):
         self.force_change_options_if_incompatible()
-
         self.selected_countries = obtain_random_maps(self.options.map_goal.value, self.random)
 
     def force_change_options_if_incompatible(self):
@@ -100,6 +75,16 @@ class GeoguessrWorld(World):
             logging.warning(f"Maximum time '{max_time}' was lower than start time '{start_time}. "
                             f"Maximum time was forced to starting time for player {self.player} ({player_name})")
 
+    def create_regions(self) -> None:
+        menu_region = Region("Menu", self.player, self.multiworld)
+
+        world_region = Region("World", self.player, self.multiworld)
+        world_region.connect(menu_region)
+
+        for country in self.selected_countries:
+            map_region = Region(country, self.player, self.multiworld)
+            map_region.connect(menu_region, None, lambda state: state.has(f"{country} Map"))
+
     def create_item(self, name: str) -> GeoguessrItem:
         item = item_table[name]
         return GeoguessrItem(name, item.classification, item.code, self.player)
@@ -108,10 +93,38 @@ class GeoguessrWorld(World):
         pass
 
     def create_items(self) -> None:
-        pass
+        starting_items: List[str] = []
+        shuffled_items: List[str] = []
 
-    def generate_basic(self) -> None:
-        pass
+        starting_items += f"{self.selected_countries[0]} Map"
+        for index in range(1, len(self.selected_countries)):
+            shuffled_items += f"{self.selected_countries[index]} Map"
+
+        shuffled_items += ["Time extension"]*calculate_time_item_count(self.options)
+
+        match self.options.movement_type:
+            case MovementType.option_full_movement:
+                starting_items += ["Move", "Pan", "Zoom"]
+            case MovementType.option_move_shuffled:
+                starting_items += ["Pan", "Zoom"]
+                shuffled_items += "Move"
+            case MovementType.option_2_item_shuffled:
+                shuffled_items += ["Move", "Pan+Zoom"]
+            case MovementType.option_2_item_progressive:
+                shuffled_items += ["Progressive 2-item Movement"]*2
+            case MovementType.option_3_item_progressive:
+                shuffled_items += ["Progressive 3-item Movement"]*3
+
+        for item in starting_items:
+            self.multiworld.push_precollected(item_table[item])
+
+        while len(shuffled_items) < len(self.multiworld.get_unfilled_locations()):
+            shuffled_items += self.get_filler_item_name()
+
+        self.multiworld.itempool += shuffled_items
+
+    def get_filler_item_name(self) -> str:
+        return "Temporary time extension"
 
     def extend_hint_information(self, hint_data: Dict[int, Dict[int, str]]):
         pass
