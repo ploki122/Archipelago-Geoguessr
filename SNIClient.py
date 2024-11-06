@@ -565,7 +565,7 @@ async def snes_write(ctx: SNIContext, write_list: typing.List[typing.Tuple[int, 
         PutAddress_Request: SNESRequest = {"Opcode": "PutAddress", "Operands": [], 'Space': 'SNES'}
         try:
             for address, data in write_list:
-                PutAddress_Request['Operands'] = [hex(address)[2:], hex(min(len(data), 256))[2:]]
+                PutAddress_Request['Operands'] = [hex(address)[2:], hex(len(data))[2:]]
                 if ctx.snes_socket is not None:
                     await ctx.snes_socket.send(dumps(PutAddress_Request))
                     await ctx.snes_socket.send(data)
@@ -633,7 +633,13 @@ async def game_watcher(ctx: SNIContext) -> None:
         if not ctx.client_handler:
             continue
 
-        rom_validated = await ctx.client_handler.validate_rom(ctx)
+        try:
+            rom_validated = await ctx.client_handler.validate_rom(ctx)
+        except Exception as e:
+            snes_logger.error(f"An error occurred, see logs for details: {e}")
+            text_file_logger = logging.getLogger()
+            text_file_logger.exception(e)
+            rom_validated = False
 
         if not rom_validated or (ctx.auth and ctx.auth != ctx.rom):
             snes_logger.warning("ROM change detected, please reconnect to the multiworld server")
@@ -649,7 +655,13 @@ async def game_watcher(ctx: SNIContext) -> None:
 
         perf_counter = time.perf_counter()
 
-        await ctx.client_handler.game_watcher(ctx)
+        try:
+            await ctx.client_handler.game_watcher(ctx)
+        except Exception as e:
+            snes_logger.error(f"An error occurred, see logs for details: {e}")
+            text_file_logger = logging.getLogger()
+            text_file_logger.exception(e)
+            await snes_disconnect(ctx)
 
 
 async def run_game(romfile: str) -> None:
